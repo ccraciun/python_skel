@@ -1,21 +1,22 @@
 .PHONY: test clean
 
-VENV_PYTHON ?= python3
+VENV_PYTHON ?= python
+VENV_NAME ?= env
 
-repl: env
-	. env/bin/activate; ipython
+repl: $(VENV_NAME)
+	. $(VENV_NAME)/bin/activate; ipython
 
 clean:
 	$(VENV_PYTHON) setup.py clean
 	find . -type f -name "*.pyc" -exec rm {} \;
 
 purge: clean
-	rm -rf env dist build *.egg-info
+	rm -rf $(VENV_NAME) dist build *.egg-info
 
-env: env/bin/activate
+env: $(VENV_NAME)/bin/activate
 
-env/bin/activate: setup.py requirements.txt
-	test -d env || virtualenv -p $(VENV_PYTHON) --no-site-packages env
-	. env/bin/activate ; pip install -U pip wheel
-	. env/bin/activate ; pip install -r requirements.txt
-	touch env/bin/activate
+$(VENV_NAME)/bin/activate: setup.py requirements.txt
+	test -d $(VENV_NAME) || virtualenv -p $(VENV_PYTHON) --no-site-packages $(VENV_NAME)
+	. $(VENV_NAME)/bin/activate ; pip install -U pip wheel
+	. $(VENV_NAME)/bin/activate ; pip install -r requirements.txt
+	touch $(VENV_NAME)/bin/activate
