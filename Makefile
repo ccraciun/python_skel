@@ -14,7 +14,7 @@ purge: clean
 
 env: env/bin/activate
 
-env/bin/activate: setup.py
+env/bin/activate: setup.py requirements.txt
 	test -d env || virtualenv -p $(VENV_PYTHON) --no-site-packages env
 	. env/bin/activate ; pip install -U pip wheel
 	. env/bin/activate ; pip install -r requirements.txt
