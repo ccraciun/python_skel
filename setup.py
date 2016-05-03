@@ -4,7 +4,7 @@ from setuptools import find_packages
 from distutils.core import setup
 
 setup(
-    name="toytwitter",
+    name="skeleton",
     version="1.0",
     packages=find_packages(),
     include_package_data=True,
