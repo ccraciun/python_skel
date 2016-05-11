@@ -5,8 +5,8 @@ from distutils.core import setup
 
 setup(
     name="skeleton",
-    version="1.0",
-    packages=find_packages(),
+    version="0.1",
+    packages=find_packages(exclude=['env', 'tests']),
     include_package_data=True,
     install_requires=[
     ],
