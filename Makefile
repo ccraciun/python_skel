@@ -6,6 +6,9 @@ VENV_NAME ?= env
 repl: $(VENV_NAME)
 	. $(VENV_NAME)/bin/activate; ipython
 
+test: $(VENV_NAME)
+	. $(VENV_NAME)/bin/activate; python setup.py test
+
 clean:
 	$(VENV_PYTHON) setup.py clean
 	find . -type f -name "*.pyc" -exec rm {} \;
